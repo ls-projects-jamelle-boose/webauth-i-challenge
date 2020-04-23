@@ -108,3 +108,10 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# Process file
+process.env
+
+# Request for routes
+request.http
+request.http
