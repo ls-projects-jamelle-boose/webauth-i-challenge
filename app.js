@@ -6,6 +6,8 @@ var helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var dotenv = require('dotenv');
+dotenv.config();
 
 var app = express();
 
