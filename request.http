@@ -5,3 +5,6 @@
 GET {{host}} HTTP/1.1
 Content-Type: {{json}}
 ###
+GET {{host}}/users HTTP/1.1
+Content-Type: {{json}}
+###
