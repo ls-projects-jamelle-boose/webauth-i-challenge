@@ -8,3 +8,5 @@ exports.add = async (body) => {
 exports.find = () => db('users');
 
 exports.findById = (id) => db('users').where({ id });
+
+exports.findByUsername = (username) => db('users').where({ username });
