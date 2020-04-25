@@ -46,4 +46,10 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
+// TODO create LOGOUT route
+router.post('/logout', (res, req, next) => {
+  try {
+  } catch (error) {}
+});
+
 module.exports = router;
