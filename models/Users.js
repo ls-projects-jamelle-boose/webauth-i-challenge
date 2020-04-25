@@ -1,4 +1,5 @@
 const db = require('../db/dbConfig');
+const Users = db('users');
 
 exports.add = async (body) => {
   const [id] = await db('users').insert(body);
