@@ -8,3 +8,19 @@ Content-Type: {{json}}
 GET {{host}}/users HTTP/1.1
 Content-Type: {{json}}
 ###
+POST {{host}}/users/register HTTP/1.1
+Content-Type: {{json}}
+
+{
+  "username": "Dallas",
+  "password": "bratty pass pass"
+}
+###
+POST {{host}}/users/login HTTP/1.1
+Content-Type: {{json}}
+
+{
+  "username": "Dallas",
+  "password": "bratty pass pass"
+}
+###
