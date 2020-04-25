@@ -2,9 +2,10 @@ var bcrypt = require('bcrypt');
 var express = require('express');
 var router = express.Router();
 var Users = require('../models/Users');
+var restricted = require('../middlewares/restricted');
 
 /* GET users listing. */
-router.get('/', async (req, res, next) => {
+router.get('/', restricted, async (req, res, next) => {
   try {
     const getUsers = await Users.find();
     if (!getUsers) res.status(404).json(`No users found.`);
@@ -36,6 +37,7 @@ router.post('/login', async (req, res, next) => {
     const [user] = await Users.findByUsername(username);
     if (user && bcrypt.compareSync(password, user.password)) {
       req.session.user = username;
+      console.log('res', res);
       res.status(200).json({ message: `Welcome!` });
     } else if (!user) {
       res.status(401).json({ message: `Invalid username.` });

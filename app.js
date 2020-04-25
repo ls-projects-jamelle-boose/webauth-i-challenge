@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
 var session = require('express-session');
@@ -16,7 +15,7 @@ var app = express();
 const sessionConfig = {
   saveUninitialized: false,
   name: 'saucy maternal',
-  secret: 'acquire spending broadly distance stench',
+  secret: 'squid hardware cresting national arrogant',
   cookie: {
     maxAge: 3600 * 1000,
     secure: false,
@@ -39,7 +38,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(session(sessionConfig));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
