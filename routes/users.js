@@ -1,8 +1,7 @@
-var bcrypt = require('bcrypt');
-var express = require('express');
-var router = express.Router();
-var Users = require('../models/Users');
-var restricted = require('../middlewares/restricted');
+const express = require('express');
+const router = express.Router();
+const Users = require('../models/Users');
+const restricted = require('../middlewares/restricted');
 
 /* GET users listing. */
 router.get('/', restricted, async (req, res, next) => {

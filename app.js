@@ -1,12 +1,17 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var helmet = require('helmet');
-var session = require('express-session');
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const logger = require('morgan');
+const helmet = require('helmet');
+const session = require('express-session');
+const knexSessionStore = require('connect-session-knex')(session);
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var dotenv = require('dotenv');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+const restricted = require('./middlewares/restricted');
+
+const dotenv = require('dotenv');
 dotenv.config();
 
 var app = express();
