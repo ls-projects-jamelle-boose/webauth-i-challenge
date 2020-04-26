@@ -14,9 +14,8 @@ const restricted = require('./middlewares/restricted');
 const dotenv = require('dotenv');
 dotenv.config();
 
-var app = express();
+const app = express();
 
-// TODO create SESSION logic
 const sessionConfig = {
   saveUninitialized: false,
   name: 'saucy maternal',
@@ -27,25 +26,25 @@ const sessionConfig = {
     httpOnly: true,
   },
   resave: false,
-  // store: new knexSessionStore({
-  //   knex: require('./db/dbConfig'),
-  //   tablename: 'sessions',
-  //   sidfieldname: 'sid',
-  //   createtable: true,
-  //   clearInterval: 3600 * 1000,
-  // }),
+  store: new knexSessionStore({
+    knex: require('./db/dbConfig'),
+    tablename: 'sessions',
+    sidfieldname: 'sid',
+    createtable: true,
+    clearInterval: 3600 * 1000,
+  }),
 };
-
-// TODO create COOKIE logic
 
 app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors());
 app.use(session(sessionConfig));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', restricted, usersRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
